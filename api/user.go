@@ -13,6 +13,7 @@ func PostUser(c *gin.Context) {
 	var err = c.BindJSON(&user)
 	if err == nil {
 		Db.Save(&user)
+		c.JSON(200, user)
 	} else {
 		c.JSON(503, err)
 	}
@@ -51,6 +52,7 @@ func PostUserRecords(c *gin.Context) {
 		if err == nil {
 			record.UserID = user.ID
 			Db.Save(&record)
+			c.JSON(200, record)
 		} else {
 			c.JSON(503, err)
 		}
